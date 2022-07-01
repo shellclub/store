@@ -1,6 +1,6 @@
 <?php
 include("conn.php");
-
+//session_destroy();
 ?>
 <!--begin::Card-->
 <div class="card card-custom">
@@ -284,10 +284,13 @@ include("conn.php");
 
                   </tr>
                 </thead>
+                <?php
+                if (isset($_SESSION["intLine"])) {
+                ?>
                 <tbody>
                   <?php
-                  for ($i = 0; $i <= (int)$_SESSION["intLine"]; $i++) {
-                  ?>
+                    for ($i = 0; $i <= (int)$_SESSION["intLine"]; $i++) {
+                    ?>
                   <tr>
                     <td><?php echo $i; ?></td>
                     <td><?php echo $_SESSION['repair_name'][$i]; ?></td>
@@ -299,6 +302,7 @@ include("conn.php");
                   <?php  } ?>
 
                 </tbody>
+                <?php } ?>
               </table>
 
             </div>
