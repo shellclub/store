@@ -281,30 +281,9 @@ include("conn.php");
                     <th title="Field #4">จำนวน</th>
                     <th title="Field #5">อาการเสีย</th>
                     <th title="Field #6">จัดการ</th>
-
                   </tr>
                 </thead>
-                <?php
-                if (isset($_SESSION["intLine"])) {
-                ?>
-                <tbody>
-                  <?php
-                    for ($i = 0; $i <= (int)$_SESSION["intLine"]; $i++) {
-                    ?>
-                  <tr>
-                    <td><?php echo $i; ?></td>
-                    <td><?php echo $_SESSION['repair_name'][$i]; ?></td>
-                    <td><?php echo $_SESSION['repair_model'][$i]; ?></td>
-                    <td>1 เครื่อง</td>
-                    <td>เปิดไม่ติด ติดแล้วมีเสียงดังเหมือนไฟช๊อต</td>
-                    <td>--</td>
-                  </tr>
-                  <?php  } ?>
-
-                </tbody>
-                <?php } ?>
               </table>
-
             </div>
           </div>
           <div class="card-footer">
@@ -452,7 +431,18 @@ include("conn.php");
 <!--end::Global Theme Bundle-->
 <!--begin::Page Scripts(used by this page)-->
 <script src="assets/js/pages/crud/ktdatatable/base/html-table.js"></script>
+<script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
 <!--end::Page Scripts-->
+<script type="text/javascript">
+$('#kt_datatable').DataTable({
+  "ajax": "json/json_repair.php",
+  "deferRender": true,
+  "responsive": true,
+});
+</script>
+
+
+
 <script>
 $(document).on("click", "#edit_user", function() {
   var user_id = $(this).data("user_id");
